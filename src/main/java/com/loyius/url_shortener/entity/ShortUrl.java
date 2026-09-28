@@ -23,19 +23,23 @@ public class ShortUrl {
     @Id
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(name = "short_code",nullable = false, unique = true, length = 50)
     private String shortCode;
 
-    @Column(nullable = false, length = 2048)
+    @Column(name = "original_url",nullable = false, length = 50)
+    private String originalURL;
+
+    @Column(name = "api_key", nullable = false, length = 2048)
     private String apiKey;
 
-    @Column(nullable = false)
+    @Column(name = "click_count", nullable = false)
     @Builder.Default
     private Long clickCount = 0L;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
+    @Column(name = "expires_at")
     private Instant expiresAt;
 
     @PrePersist
