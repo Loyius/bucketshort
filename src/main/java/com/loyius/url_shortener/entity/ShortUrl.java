@@ -21,7 +21,6 @@ import java.time.Instant;
 public class ShortUrl {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true, length = 50)
