@@ -27,7 +27,7 @@ public class ShortUrl {
     private String shortCode;
 
     @Column(name = "original_url",nullable = false, length = 50)
-    private String originalURL;
+    private String originalUrl;
 
     @Column(name = "api_key", nullable = false, length = 2048)
     private String apiKey;
