@@ -20,9 +20,16 @@ public class AdminController {
         this.strategy = strategy;
     }
 
+    //Creates a mask for the API keys
+    private static String mask(String key){
+        return key.length() <= 4 ? "****" : key.substring(0, 4) + "****";
+    }
+
     @GetMapping("/limits")
     public RateLimitStateResponse limits() {
-        Map<String, RateLimitResult> masked = new LinkedHashMap<>(strategy.currentState());
+        Map<String, RateLimitResult> masked = new LinkedHashMap<>();
+        strategy.currentState().forEach((key, state) ->
+                masked.put(mask(key), state));
         return new RateLimitStateResponse(strategy.name(), masked.size(), masked);
     }
 }
